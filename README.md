@@ -44,7 +44,7 @@ Ensure the following are installed:
    ```
 2. Run the 🛠️:
    ```bash
-   python generate_commit_message.py /path/to/target/project --max_length 100
+   python scommit.py /path/to/target/project --max_length 100
    ```
    Replace `/path/to/target/project` with the 📁 to your project and adjust `--max_length` as needed.
 

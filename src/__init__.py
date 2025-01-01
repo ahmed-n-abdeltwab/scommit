@@ -1,0 +1,1 @@
+"""Smart commit message generator package."""
