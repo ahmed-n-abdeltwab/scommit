@@ -14,7 +14,6 @@ class CommitMessageGenerator:
                 num_return_sequences=1,
                 do_sample=True,
                 truncation=True,
-                pad_to_max_length=True
             )
             
             message = output[0]['generated_text'].strip()
