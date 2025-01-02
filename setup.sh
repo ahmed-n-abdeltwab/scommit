@@ -6,7 +6,18 @@ mkdir -p ~/bin
 # Create the scommit script
 cat > ~/bin/scommit << 'EOF'
 #!/bin/bash
-python3 "$(pwd)/src/main.py" "$(pwd)" "$@"
+
+# Get the current directory
+CURRENT_DIR=$(pwd)
+
+# Activate virtual environment
+source "${CURRENT_DIR}/myenv/bin/activate"
+
+# Run the script with the current directory as project path
+python3 "${CURRENT_DIR}/src/main.py" "${CURRENT_DIR}" "$@"
+
+# Deactivate virtual environment
+deactivate
 EOF
 
 # Make the script executable
