@@ -17,4 +17,9 @@ def create_parser():
         default=50,
         help="Maximum length for the generated commit message."
     )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Preview the generated message without committing changes."
+    )
     return parser
