@@ -1,81 +1,126 @@
-# 🧑‍💻 Git Diff Commit Message Generator 📝
+# Smart Commit Message Generator
 
-## 🌟 Project Overview
-This 🛠️ is a 🐍 script 🧑‍💻 to simplify the 🛣️ of generating 🎯 Git commit messages. It 🏗️ a local text-generation 🤖 (GPT-2) to 🧐 staged changes in a Git 📁 and generate a short 📝. The 📝 can then be directly used to commit the changes.
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-### ❓ Why This Project?
-Writing ✍️ meaningful and consistent commit 📝 is an essential practice in 🔧 🖥️. However, it can be 🕒-consuming and 🛑-prone. This 🛠️ automates the 🛣️, ensuring that commit 📝 are:
 
-- **🔍 Descriptive**: Reflecting the staged changes.
-- **🎯 Consistent**: Maintaining a uniform style.
-- **⏱️ Efficient**: Saving developer 🕒.
+An AI-powered tool that automatically generates meaningful commit messages from your staged git changes using GPT-2.
 
-The use of a local 🤖 ensures that no 🔒 code or data is sent to 🌐 services, making it suitable for projects with strict 🔐 requirements.
 
-## 🔥 Features
-- 🧐 staged Git changes (`git diff --staged`).
-- Generates commit 📝 using a local GPT-2 🤖.
-- 📜 commits changes with the generated 📝.
-- ⚙️ customization of 📝 length using the `--max_length` parameter.
+## Features
 
-## 🧭 How to Use
+- 🤖 Automatically analyzes staged git changes
+- ✨ Generates concise and descriptive commit messages
+- 📏 Configurable message length
+- 🖥️ Easy to use command-line interface
+- 🧠 Uses GPT-2 for intelligent message generation
 
-### 📋 Prerequisites
-Ensure the following are installed:
-- 🐍 3.7+
-- `transformers` and `torch` 🐍 libraries
-- Git
+## Installation
 
-### 🔧 Installation
-1. 🌀 this repository:
-   ```bash
-   git clone https://github.com/your-repo-url.git
-   cd your-repo-url
-   ```
-2. Install the required 🐍 📦:
-   ```bash
-   pip install transformers torch
-   ```
-
-### 🚀 Usage
-1. 📥 your changes in the target project:
-   ```bash
-   git add <file>
-   ```
-2. Run the 🛠️:
-   ```bash
-   python scommit.py /path/to/target/project --max_length 100
-   ```
-   Replace `/path/to/target/project` with the 📁 to your project and adjust `--max_length` as needed.
-
-3. The 🛠️ will 🏗️ a commit 📝 and use it to commit the changes.
-
-### 📝 Example
+1. Clone the repository:
 ```bash
-python scommit.py /my/project --max_length 80
-```
-Output:
-```
-Changes committed ✅.
-Commit Output: [main abc1234] 🛠️ function for better error 🛡️.
+git clone <repository-url>
+cd smart-commit-generator
 ```
 
-## 💡 Useful Tips
-- **🧪 Dry Run**: If you want to 🔍 the commit 📝 before committing, 🛠️ the script to 🖨️ the 📝 without executing `git commit`.
-- **🤖 Custom Models**: You can replace GPT-2 with a fine-tuned 🤖 for 🏗️-specific commit 📝.
+2. Create and activate virtual environment:
+```bash
+python -m venv myenv
+source myenv/bin/activate  # On Unix/macOS
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+pip install -r requirements-dev.txt  # For development
+```
+
+4. Install the `scommit` command:
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+## Usage
+
+Simply stage your changes with git and run:
+
+```bash
+scommit
+```
+
+Options:
+- `--max_length`: Maximum length for the generated commit message (default: 50)
+- `--dry-run`: Preview the generated message without committing
+
+## Useful Tips
+
+🧪 **Dry Run**: 
+- Add `--dry-run` flag to preview the generated message without committing
+- Useful for testing and adjusting message generation settings
+- Example: `scommit --dry-run`
+
+🤖 **Custom Models**: 
+- Configure different models in `src/ai/model_config.py`
+- Supports any Hugging Face text generation model
+- Adjust model parameters for different output styles
 
 ## ⚠️ Limitations
-- Requires staged changes to 🏗️ a 📝.
-- The ✨ of the 🏗️ 📝 depends on the 📊 of the GPT-2 🤖.
+
+- Requires Python 3.7+
+- Only works with git repositories
+- May generate generic messages for complex changes
+- Limited to staged changes only
+- CPU-only by default (GPU support requires additional setup)
+- English language only
 
 ## 🔮 Future Improvements
-- 🧑‍🤝‍🧑 for 🗂️ file changes in a single commit.
-- 🛠️ to preview and 🖊️ the 🏗️ 📝 before committing.
-- Integration with popular Git 🖼️ for seamless usage.
 
-## 🙌 Contributing
-Contributions are welcome! 🤝 Feel free to open an 🐞 or submit a 📤 request.
+- [ ] GPU acceleration support
+- [ ] Multiple language support
+- [ ] Custom prompt templates
+- [ ] Integration with popular Git GUIs
+- [ ] Support for commit message conventions (conventional commits)
+- [ ] Pre-commit hook integration
+- [ ] Branch-specific message styles
+- [ ] Message quality scoring
 
-## ⚖️ License
-This 🛠️ is 🏷️ under the MIT 📜. See the `LICENSE` 📄 for more details.
+## Development
 
+### Running Tests
+
+```bash
+pytest tests/ -v
+```
+
+### Project Structure
+
+```
+├── src/
+│   ├── ai/                    # AI-related modules
+│   │   ├── message_generator.py
+│   │   ├── model_config.py
+│   │   └── text_cleaner.py
+│   ├── cli/                   # CLI-related modules
+│   │   └── argument_parser.py
+│   ├── git/                   # Git operations
+│   │   └── git_operations.py
+│   └── main.py               # Main entry point
+├── tests/                     # Test suite
+├── requirements.txt           # Production dependencies
+├── requirements-dev.txt       # Development dependencies
+└── setup.sh                  # Installation script
+```
+
+## License
+
+MIT License
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Write tests for your changes
+4. Ensure all tests pass
+5. Submit a pull request
