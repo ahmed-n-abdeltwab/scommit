@@ -1,5 +1,11 @@
-pytest==8.3.4
-pytest-cov==6.0.0
-pytest-mock==3.14.0
-torch==2.5.1
-transformers==4.47.1
+# Core dependencies
+transformers>=4.30.0
+torch>=2.0.0
+gitpython>=3.1.0
+
+# CLI and utilities
+argparse>=1.4.0
+colorama>=0.4.6  # For colored terminal output
+
+# Type checking
+typing-extensions>=4.5.0  # For Python 3.7+ compatibility
