@@ -68,7 +68,7 @@ Options:
 
 ## ⚠️ Limitations
 
-- Requires Python 3.7+
+- Requires Python 3.8+
 - Only works with git repositories
 - May generate generic messages for complex changes
 - Limited to staged changes only
