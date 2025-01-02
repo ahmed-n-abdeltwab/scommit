@@ -18,8 +18,13 @@ def main():
     generator = CommitMessageGenerator()
     commit_message = generator.generate(diff_text, max_length=args.max_length)
 
-    # Commit changes
-    commit_changes(commit_message)
+    # Preview or commit changes
+    if args.dry_run:
+        print("\n🧪 Dry Run - Generated commit message:")
+        print(f"\n    {commit_message}\n")
+        print("No changes were committed.")
+    else:
+        commit_changes(commit_message)
 
 if __name__ == "__main__":
     main()
